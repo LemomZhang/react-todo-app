@@ -1,6 +1,5 @@
 ## To-Do List
 
-一个随手记录
 完成的功能如下：
 
 -   查看所有 To-Do items
@@ -13,13 +12,13 @@
 
 > 初用 React 和 Ant Design ，可能存在一些不完美的地方，如有 bug，还请多多指教
 
-### Compiles and hot-reloads for development
+### 编译并预览
 
 ```
 yarn start
 ```
 
-### Compiles and minifies for production
+### 编译打包
 
 ```
 npm run build
