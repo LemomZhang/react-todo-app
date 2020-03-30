@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-
 import { Modal, Button } from 'antd';
 import { Input } from 'antd';
 import { message } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 class AddTodo extends Component {
 	state = { visible: false };
 	showModal = () => {
 		this.setState({
+			// 控制弹窗开关
 			visible: true
 		});
 	};
-
+	// 当用户点击确定所要做的事
 	handleOk = e => {
 		const { value } = this.refs.inputV.state;
 
@@ -26,7 +27,7 @@ class AddTodo extends Component {
 		message.success('新增成功！');
 		this.props.onAddTodo(todo);
 	};
-
+	// 当用户点击取消所要做的事
 	handleCancel = e => {
 		console.log('用户已取消新增任务');
 		this.setState({
@@ -37,10 +38,14 @@ class AddTodo extends Component {
 	render() {
 		return (
 			<div style={{ marginTop: 30 }}>
-				<Button type="primary" onClick={this.showModal}>
+				<Button
+					type="primary"
+					onClick={this.showModal}
+					icon={<PlusOutlined />}
+				>
 					新增任务
 				</Button>
-
+				{/* 弹框 */}
 				<Modal
 					title="新增任务"
 					visible={this.state.visible}

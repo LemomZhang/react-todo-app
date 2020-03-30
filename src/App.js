@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Todo from './components/todo';
 import Todos from './components/todos';
 import AddTodo from './components/addtodo';
-
 import { Empty } from 'antd';
 import { BackTop } from 'antd';
 import './App.css';
@@ -11,9 +10,11 @@ class App extends Component {
 	state = {
 		todos: JSON.parse(localStorage.getItem('todos')) || []
 	};
+	// 封装保存todo方法
 	saveTodo = todos => {
 		localStorage.setItem('todos', JSON.stringify(todos));
 	};
+	//  更新todo内容
 	handleEdit = todo => {
 		const index = this.state.todos.indexOf(todo);
 		const todos = [...this.state.todos];
@@ -23,7 +24,7 @@ class App extends Component {
 		});
 		this.saveTodo(todos);
 	};
-
+	// 新增一个todo
 	handleAddTodo = todo => {
 		const todos = [...this.state.todos];
 		todos.push(todo);
@@ -32,6 +33,7 @@ class App extends Component {
 		});
 		this.saveTodo(todos);
 	};
+	// 删除一个todo
 	handleDelete = todo => {
 		const index = this.state.todos.indexOf(todo);
 		const todos = [...this.state.todos];
@@ -41,6 +43,7 @@ class App extends Component {
 		});
 		this.saveTodo(todos);
 	};
+	// 改变todo的完成状态
 	handleUpdate = todo => {
 		const index = this.state.todos.indexOf(todo);
 		const todos = [...this.state.todos];
@@ -50,6 +53,7 @@ class App extends Component {
 		});
 		this.saveTodo(todos);
 	};
+	// 返回所有todo
 	allTodos = () => {
 		if (!this.state.todos.length) {
 			return (
@@ -69,6 +73,7 @@ class App extends Component {
 			/>
 		));
 	};
+	// 返回已完成的todo
 	finished = () => {
 		const todos = this.state.todos.filter(todo => todo.finish === true);
 		if (!todos.length) {
@@ -89,6 +94,7 @@ class App extends Component {
 			/>
 		));
 	};
+	// 返回未完成的todo
 	unfinished = () => {
 		const todos = this.state.todos.filter(todo => todo.finish === false);
 		if (!todos.length) {
@@ -119,6 +125,7 @@ class App extends Component {
 					unfinished={this.unfinished}
 					todos={this.state.todos}
 				/>
+				{/* 回到顶部 */}
 				<BackTop visibilityHeight />
 			</div>
 		);

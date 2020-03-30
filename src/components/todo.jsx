@@ -15,6 +15,7 @@ class Todo extends Component {
 			visible: true
 		});
 	};
+	// 处理删除事件
 	showDeleteConfirm = props => {
 		confirm({
 			title: `你确定要删除此任务吗？(${props.todo.content})`,
@@ -25,12 +26,14 @@ class Todo extends Component {
 			cancelText: '取消',
 			onOk() {
 				props.onDelete(props.todo);
+				message.success('已成功删除！');
 			},
 			onCancel() {
 				console.log('用户已取消删除');
 			}
 		});
 	};
+	// 处理更新事件
 	handleOk = e => {
 		const todo = this.props.todo;
 		const { value } = this.refs.inputV.state;
@@ -39,16 +42,20 @@ class Todo extends Component {
 			visible: false
 		});
 		this.props.onEdit(todo);
+		message.success('更新成功！');
 	};
-
+	// 取消更新弹框事件
 	handleCancel = e => {
 		this.setState({
 			visible: false
 		});
+		console.log('用户已取消更新');
 	};
+	// 格式化switch状态
 	formatSwitch = () => {
 		return this.props.todo.finish === false ? false : true;
 	};
+	// 处理switch状态
 	handleSwitch = checked => {
 		const todo = this.props.todo;
 		todo.finish = checked;
@@ -73,14 +80,14 @@ class Todo extends Component {
 					]}
 				>
 					<p>{this.props.todo.content}</p>
+
+					<p style={{ marginTop: 12 }}>{this.props.todo.date}</p>
 					<Switch
 						onClick={this.handleSwitch}
 						checkedChildren="完成"
 						unCheckedChildren="未完成"
 						checked={this.formatSwitch()}
 					/>
-
-					<p>{this.props.todo.date}</p>
 					<Modal
 						title="更新任务"
 						visible={this.state.visible}
