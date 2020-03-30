@@ -21,5 +21,5 @@ yarn start
 ### 编译打包
 
 ```
-npm run build
+yarn build
 ```
