@@ -14,12 +14,6 @@
 
 > 初用 React 和 Ant Design ，如有 bug，还请多多指教，非常感谢！^_^ 🌹
 
-## 项目截图
-
-![image](https://unclelian.github.io/vue2-echo/screenshots/echo_index.png)
-## 更新日志
-
-[更新说明](https://github.com/uncleLian/vue2-echo/releases)中记录了每个版本的详细更改。
 ## 编译并预览
 
 ```
