@@ -5,7 +5,7 @@
 -   查看所有 To-Do items
 -   新增 To-Do item
 -   编辑 一个 To-Do item
--   删除一个 To-Do item
+-   删除一个或删除所有 To-Do item
 -   使用 localStorage 本地存储
 
 本项目使用 [React](https://zh-hans.reactjs.org/docs/getting-started.html) 和[Ant Design UI components](https://ant.design/index-cn)构建
