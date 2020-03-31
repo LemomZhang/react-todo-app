@@ -14,19 +14,24 @@ class AddTodo extends Component {
 	// 当用户点击确定所要做的事
 	handleOk = e => {
 		const { value } = this.refs.inputV.state;
-
+		const content = (value + '').trim();
+		if (content.length === 0 || value === undefined) {
+			message.error('内容不能为空！');
+			return;
+		}
 		const todo = {
 			id: new Date().getTime(),
-			content: value,
+			content,
 			date: new Date().toLocaleString(),
 			finish: false
 		};
 		this.setState({
 			visible: false
 		});
-		message.success('新增成功！');
 		this.props.onAddTodo(todo);
+		message.success('新增成功！');
 	};
+
 	// 当用户点击取消所要做的事
 	handleCancel = e => {
 		console.log('用户已取消新增任务');
@@ -54,7 +59,11 @@ class AddTodo extends Component {
 					cancelText="取消"
 					okText="确定"
 				>
-					<Input placeholder="在此输入需要完成的任务" ref="inputV" />
+					<Input
+						size="large"
+						placeholder="在此输入需要完成的任务"
+						ref="inputV"
+					/>
 				</Modal>
 			</div>
 		);

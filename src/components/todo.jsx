@@ -18,7 +18,7 @@ class Todo extends Component {
 	// 处理删除事件
 	showDeleteConfirm = props => {
 		confirm({
-			title: `你确定要删除此任务吗？(${props.todo.content})`,
+			title: `确定要删除此任务吗？(${props.todo.content})`,
 			icon: <ExclamationCircleOutlined />,
 			content: '',
 			okText: '确定',
@@ -37,6 +37,11 @@ class Todo extends Component {
 	handleOk = e => {
 		const todo = this.props.todo;
 		const { value } = this.refs.inputV.state;
+		const content = (value + '').trim();
+		if (content.length === 0 || value === undefined) {
+			message.error('内容不能为空！');
+			return;
+		}
 		todo.content = value;
 		this.setState({
 			visible: false

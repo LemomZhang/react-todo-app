@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import Todo from './components/todo';
 import Todos from './components/todos';
-import AddTodo from './components/addtodo';
+import AddTodo from './components/addTodo';
+import ClearTodo from './components/clearTodo';
 import { Empty } from 'antd';
 import { BackTop } from 'antd';
+import { Row, Col } from 'antd';
 import './App.css';
 class App extends Component {
 	state = {
@@ -27,7 +29,7 @@ class App extends Component {
 	// 新增一个todo
 	handleAddTodo = todo => {
 		const todos = [...this.state.todos];
-		todos.push(todo);
+		todos.unshift(todo);
 		this.setState({
 			todos
 		});
@@ -42,6 +44,13 @@ class App extends Component {
 			todos
 		});
 		this.saveTodo(todos);
+	};
+	// 清除所有todo
+	handleClearTodo = () => {
+		localStorage.removeItem('todos');
+		this.setState({
+			todos: []
+		});
 	};
 	// 改变todo的完成状态
 	handleUpdate = todo => {
@@ -118,7 +127,14 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<AddTodo onAddTodo={this.handleAddTodo} />
+				<Row gutter={16} justify="center">
+					<Col>
+						<AddTodo onAddTodo={this.handleAddTodo} />
+					</Col>
+					<Col>
+						<ClearTodo onClearTodo={this.handleClearTodo} />
+					</Col>
+				</Row>
 				<Todos
 					allTodos={this.allTodos}
 					finished={this.finished}
